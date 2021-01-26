@@ -27,6 +27,11 @@ public class AccountsPage {
 	private By SearchBtn = By.cssSelector("div#search button");
 	private By SearchItemsresult = By.cssSelector("div.product-layout .product-thumb ");
 	
+	private By SearchHeaderDesktop = By.linkText("Desktops");
+	private By ClickSearchHeaderDeskTopSubmenu = By.linkText("PC (0)");
+	private By SearchHeaderLapto = By.linkText("Laptops & Notebooks");
+	private By ClickSearchHeaderLatosecondSubMenu = By.linkText("Windows (0)");
+	
 	//constructor
 	public AccountsPage(WebDriver driver) {//yaha AccountsPage ka object bante hi ye constructor ka call aye ga or jo driver pass kiya jaye ga wo elementutil me pass o jaye ga
 		this.driver=driver;
@@ -71,6 +76,14 @@ public class AccountsPage {
 			return true;
 		}
 		return false;
+	}
+	public void dropDownHeader() {
+		try {
+			elementutil.clickOnSubMenu(SearchHeaderDesktop, ClickSearchHeaderDeskTopSubmenu);
+			
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

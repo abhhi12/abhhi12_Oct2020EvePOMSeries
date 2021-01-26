@@ -80,5 +80,9 @@ public class AccountsPageTest extends BaseTest {
 	public void searchtest(String product) {
 		Assert.assertTrue(accountpage.doSearch(product));// both are mapped with this keyword dataProvider
 	}
+	@Test(priority=6)
+	public void TestHeaderSubMenu() {
+		accountpage.dropDownHeader();
+	}
 
 }
