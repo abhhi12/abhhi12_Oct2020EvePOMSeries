@@ -85,5 +85,12 @@ public class AccountsPage {
 			e.printStackTrace();
 		}
 	}
+	public void dropDownHeaderLapyNotbook() {
+		try {
+			elementutil.clickOnSubMenu(SearchHeaderLapto, ClickSearchHeaderLatosecondSubMenu);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

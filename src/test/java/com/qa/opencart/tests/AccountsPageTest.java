@@ -76,13 +76,17 @@ public class AccountsPageTest extends BaseTest {
 	
 	@Description("searc htest")
 	@Severity(SeverityLevel.CRITICAL)
-	@Test(priority=5, dataProvider="productTestData")
+	@Test(priority=7, dataProvider="productTestData")
 	public void searchtest(String product) {
 		Assert.assertTrue(accountpage.doSearch(product));// both are mapped with this keyword dataProvider
 	}
-	@Test(priority=6)
+	@Test(priority=5)
 	public void TestHeaderSubMenu() {
 		accountpage.dropDownHeader();
+	}
+	@Test(priority=6)
+	public void TestHeadersecsubmenu() {
+		accountpage.dropDownHeaderLapyNotbook();
 	}
 
 }
