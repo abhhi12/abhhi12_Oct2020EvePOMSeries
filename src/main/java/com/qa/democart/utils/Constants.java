@@ -14,6 +14,7 @@ public class Constants {
 	public static final String ACCOUNT_HAS_CREATED_SUCCES = "Your Account Has Been Created!";
 	public static final String REGISTER_SHEET_NAME = "Register";
 	public static final String SEARCH_SHEET_NAME = "Sheet1";
+	public static final int Justfy_TABLET_SERCH = 6;
 	
 	public static List<String> accSecList;
 	

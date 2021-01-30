@@ -32,6 +32,9 @@ public class AccountsPage {
 	private By SearchHeaderLapto = By.linkText("Laptops & Notebooks");
 	private By ClickSearchHeaderLatosecondSubMenu = By.linkText("Windows (0)");
 	private By ClickTableticon = By.linkText("Tablets");
+	private By ClickSamsungGlaxyTablet = By.linkText("Samsung Galaxy Tab 10.1");
+	private By AssetClickSamsungGlaxyTablet = By.xpath("//li[@class='image-additional']");
+	
 	
 	//constructor
 	public AccountsPage(WebDriver driver) {//yaha AccountsPage ka object bante hi ye constructor ka call aye ga or jo driver pass kiya jaye ga wo elementutil me pass o jaye ga
@@ -96,6 +99,15 @@ public class AccountsPage {
 	@Step("Click Tablet icon")
 	public void doClickTableticon() {
 		elementutil.doClick(ClickTableticon);
+		elementutil.doClick(ClickSamsungGlaxyTablet);
+		
+	}
+	@Step("Assert Tab Result")
+	public boolean TabResult() {
+		if(elementutil.getElements(AssetClickSamsungGlaxyTablet).size()==Constants.Justfy_TABLET_SERCH) {
+			return true;
+		}
+		return false;
 	}
 
 }

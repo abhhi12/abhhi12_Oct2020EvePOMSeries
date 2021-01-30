@@ -76,7 +76,7 @@ public class AccountsPageTest extends BaseTest {
 	
 	@Description("searc htest")
 	@Severity(SeverityLevel.CRITICAL)
-	@Test(priority=8, dataProvider="productTestData")
+	@Test(priority=9, dataProvider="productTestData")
 	public void searchtest(String product) {
 		Assert.assertTrue(accountpage.doSearch(product));// both are mapped with this keyword dataProvider
 	}
@@ -91,6 +91,10 @@ public class AccountsPageTest extends BaseTest {
 	@Test(priority=7)
 	public void Testdoelementutil() {
 		accountpage.doClickTableticon();
+	}
+	@Test(priority=8)
+	public void assertingTabResult() {
+		Assert.assertTrue(accountpage.TabResult());
 	}
 
 }
