@@ -31,6 +31,7 @@ public class AccountsPage {
 	private By ClickSearchHeaderDeskTopSubmenu = By.linkText("PC (0)");
 	private By SearchHeaderLapto = By.linkText("Laptops & Notebooks");
 	private By ClickSearchHeaderLatosecondSubMenu = By.linkText("Windows (0)");
+	private By ClickTableticon = By.linkText("Tablets");
 	
 	//constructor
 	public AccountsPage(WebDriver driver) {//yaha AccountsPage ka object bante hi ye constructor ka call aye ga or jo driver pass kiya jaye ga wo elementutil me pass o jaye ga
@@ -91,6 +92,10 @@ public class AccountsPage {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	@Step("Click Tablet icon")
+	public void doClickTableticon() {
+		elementutil.doClick(ClickTableticon);
 	}
 
 }

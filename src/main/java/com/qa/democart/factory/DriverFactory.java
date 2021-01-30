@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -12,6 +14,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -23,6 +27,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 	public WebDriver driver;
+	public Properties prop;
+	
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
 	//this is using for threading means parallel execution of driver at the the time of testrun. they have set and get method for driver
 	/**
@@ -36,17 +42,28 @@ public class DriverFactory {
 		
 	System.out.println("Browser name is :" + browserName);
 	
-	switch(browserName) {
+	switch(browserName.trim()) {
 	case "chrome":
 		WebDriverManager.chromedriver().setup();
+		
+		if(Boolean.parseBoolean((prop.getProperty("remote")))) {
+			init_remoteDriver("chrome");
+		}
+		else {
+			tlDriver.set(new ChromeDriver());
+		}
 		//driver = new ChromeDriver();
-		tlDriver.set(new ChromeDriver());
 		break;
 		
 	case "firefox":
 		WebDriverManager.firefoxdriver().setup();
 		//driver = new FirefoxDriver();
-		tlDriver.set(new FirefoxDriver());
+		if(Boolean.parseBoolean((prop.getProperty("remote")))) {
+			init_remoteDriver("chrome");
+		}
+		else {
+			tlDriver.set(new FirefoxDriver());
+		}
 		break;
 		
 	case "safari":
@@ -65,6 +82,31 @@ public class DriverFactory {
 	return getDriver();
 	
 	}
+	
+	
+	public void init_remoteDriver(String browserName) {
+		if(browserName.equals("chrome")) {
+			DesiredCapabilities cap = DesiredCapabilities.chrome();
+			try {
+				tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("hubUrl")), cap));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(browserName.equals("firefox")) {
+			DesiredCapabilities cap = DesiredCapabilities.firefox();
+			try {
+				tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("hubUrl")), cap));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	
 	/**
 	 * getDriver using local threads
 	 * @return 
@@ -79,7 +121,7 @@ public class DriverFactory {
 	 * @return prop
 	 */
 	public Properties init_prop() {
-		Properties prop = null;//null because if properties not loaded then it will return null
+		//Properties prop = null;//null because if properties not loaded then it will return null
 		try {
 			FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");//yaha path se copy karna hai 
 			prop = new Properties();//yaha object creat karna hai Properties ka
