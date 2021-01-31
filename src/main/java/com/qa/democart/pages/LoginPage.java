@@ -22,6 +22,7 @@ public class LoginPage {
 	private By logibbutton = By.cssSelector("input[value='Login']");
 	private By ForgotPwdLink = By.linkText("Forgotten Password");
 	private By Register = By.linkText("Register");
+	private By ShopingCart = By.linkText("Shopping Cart");
 	
 	//Page Constructor
 	public LoginPage(WebDriver driver) {
@@ -61,5 +62,8 @@ public class LoginPage {
 		//yr Registration Page humlogo ne banaya hai through By locator jana hai(overall iska matlab ye hai)
 		return new RegisterPage(driver);
 	}
-	
+	public MovetoShopingCart doclickShopingCart() {
+		elementUtil.doClick(ShopingCart);
+		return new MovetoShopingCart(driver);
+	}
 }
