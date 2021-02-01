@@ -10,9 +10,10 @@ public class MovetoShopingCartTest extends BaseTest {
 	public void fromloginpagetoShopigcart() {
 		movetoShopingcart=loginPage.doclickShopingCart();
 	}
-	@Test
+	@Test(priority=1)
 	public void TestMovetoShopingCart() {
 		movetoShopingcart.doclickCOntBtn();
+		
 	}
-
+	
 }

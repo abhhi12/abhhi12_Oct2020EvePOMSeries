@@ -1,5 +1,7 @@
 package com.qa.opencart.tests;
 
+import java.util.List;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -34,6 +36,12 @@ public class LoginPageTest extends BaseTest {
 	@Test(priority=3)
 	public void loginTest() {
 		loginPage.doLogin(prop.getProperty("email"), prop.getProperty("password"));
+	}
+	@Test(priority=4)
+	public void testdoListofheader() {
+		List<String> head=loginPage.doListofheader();
+		System.out.println(head);
+		Assert.assertEquals(head, Constants.getExpectedheaderList());
 	}
 
 }

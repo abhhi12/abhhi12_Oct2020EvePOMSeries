@@ -12,6 +12,7 @@ public class MovetoShopingCart {
 		private By contbtn = By.linkText("Continue");
 		private By zeroitembtn = By.cssSelector("#cart-total");
 		private By Displaytextfromzeroitembtn = By.xpath("//ul[@class='dropdown-menu pull-right']/li/p");
+		private By HeaderMenu = By.xpath("//ul[@class='nav navbar-nav']/li");
 		
 		
 		public MovetoShopingCart(WebDriver driver) {
@@ -19,13 +20,10 @@ public class MovetoShopingCart {
 			eleutil = new ElementUtil(driver);
 		}
 		
-		public String doclickCOntBtn() {
+		public void doclickCOntBtn() {
 			eleutil.doClick(contbtn);
 			eleutil.doClick(zeroitembtn);
-			return eleutil.doGetText(Displaytextfromzeroitembtn);
-			
-			
+			eleutil.doGetText(Displaytextfromzeroitembtn);
+			eleutil.doGetText(HeaderMenu);
 		}
-		
-
 }

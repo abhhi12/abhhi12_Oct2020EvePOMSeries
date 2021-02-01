@@ -1,7 +1,11 @@
 package com.qa.democart.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.qa.democart.utils.Constants;
 import com.qa.democart.utils.ElementUtil;
@@ -13,6 +17,7 @@ import io.qameta.allure.Story;
 @Epic("EPIC:100 User Login page")
 @Story("US 201: Login page Future Story")
 public class LoginPage {
+	
 	private WebDriver driver;
 	private ElementUtil elementUtil;
 	
@@ -23,6 +28,7 @@ public class LoginPage {
 	private By ForgotPwdLink = By.linkText("Forgotten Password");
 	private By Register = By.linkText("Register");
 	private By ShopingCart = By.linkText("Shopping Cart");
+	private By Listofheader = By.xpath("//ul[@class='nav navbar-nav']/li");
 	
 	//Page Constructor
 	public LoginPage(WebDriver driver) {
@@ -65,5 +71,16 @@ public class LoginPage {
 	public MovetoShopingCart doclickShopingCart() {
 		elementUtil.doClick(ShopingCart);
 		return new MovetoShopingCart(driver);
+	}
+	public List<String> doListofheader() {
+		List<String> listofheader = new ArrayList<String>();
+		
+		List<WebElement> headerlist=elementUtil.getElements(Listofheader);
+		for(WebElement e: headerlist) {
+			String list_of_Header=e.getText();
+			listofheader.add(list_of_Header);
+			
+		}
+		return listofheader;
 	}
 }

@@ -28,5 +28,23 @@ public class Constants {
 		return accSecList;
 		
 	}
+	
+	public static List<String> accheaderlist;
+	
+	public static List<String> getExpectedheaderList() {
+		accheaderlist = new ArrayList<String>();
+		accheaderlist.add("Desktops");
+		accheaderlist.add("Laptops & Notebooks");
+		accheaderlist.add("Components");
+		accheaderlist.add("Tablets");
+		accheaderlist.add("Software");
+		accheaderlist.add("Phones & PDAs");
+		accheaderlist.add("Cameras");
+		accheaderlist.add("MP3 Players");
+		return accheaderlist;
+		
+	}
+	
+	
 
 }
